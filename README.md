@@ -1,6 +1,6 @@
 # ☕ my-java-practice
 
-A comprehensive, production-grade Core Java practice repository demonstrating essential OOP principles, modern Java language features, multithreading, the Collections Framework, the Stream API, Lambda expressions, fundamental data structures, and searching & sorting algorithms with step-by-step visual dry runs.
+A comprehensive, production-grade Core Java practice repository demonstrating essential OOP principles, modern Java language features, multithreading, the Collections Framework, the Stream API, Lambda expressions, fundamental data structures (Tree, Queue, Stack, LinkedList), and searching & sorting algorithms with step-by-step visual dry runs.
 
 Every file in this repository is designed to be self-explanatory, featuring detailed inline Javadoc explanations, clear output messages, and runnable examples.
 
@@ -10,13 +10,15 @@ Every file in this repository is designed to be self-explanatory, featuring deta
 
 ```text
 my-java-practice/
-├── SearchAlgorithms.java   # Searching: Linear Search & Binary Search (Iterative & Recursive) with Dry Runs
-├── SortingAlgorithms.java  # Sorting: Bubble, Selection, Insertion & Quick Sort with Visual Dry Runs
+├── BinarySearchTree.java   # Full-Fledged BST: Insert, Delete, Search, Traversals, Height, Depth, 2D Tree Diagram
+├── Tree.java               # Direct CLI alias for BinarySearchTree
 ├── Queue.java              # Custom Circular Queue (FIFO) with User-defined Size CLI
 ├── Stack.java              # Custom Array-based Stack (LIFO) with User-defined Size CLI
 ├── DynamicStack.java       # Dynamic Stack Practice
 ├── LinkedList.java         # Interactive Singly Linked List Data Structure CLI
 ├── Node.java               # Node class supporting the Singly Linked List
+├── SearchAlgorithms.java   # Searching: Linear Search & Binary Search (Iterative & Recursive) with Dry Runs
+├── SortingAlgorithms.java  # Sorting: Bubble, Selection, Insertion & Quick Sort with Visual Dry Runs
 ├── OopsMastery.java        # Comprehensive OOP: Pillars, Constructors, static, final, Interfaces
 ├── CollectionsMastery.java # Deep Dive: List, Set, Queue, Deque, Map, Iterators, LRU Cache
 ├── StreamMastery.java      # Deep Dive: Sources, Operations, Advanced Collectors, Parallelism
@@ -33,73 +35,54 @@ my-java-practice/
 
 ## 🎯 Modules & Concepts Covered
 
-### 1. `SearchAlgorithms.java` — Searching Algorithms with Step-by-Step Dry Runs
-* **Linear Search (Sequential Scan)**:
-  * Works on both unsorted and sorted arrays.
-  * Live dry run showing element inspection, match confirmation, and comparison count.
-  * Time Complexity: Best $\mathcal{O}(1)$, Worst $\mathcal{O}(n)$, Space $\mathcal{O}(1)$.
-* **Binary Search (Iterative Divide & Conquer)**:
-  * Requires a sorted array.
-  * Pointer tracking (`low`, `mid`, `high`) with visual subarray display and search space halving.
-  * Overflow-safe midpoint formula: `mid = low + (high - low) / 2`.
-  * Time Complexity: Best $\mathcal{O}(1)$, Worst $\mathcal{O}(\log n)$, Space $\mathcal{O}(1)$.
-* **Binary Search (Recursive Call Stack)**:
-  * Step-by-step call stack tracing displaying recursion depth and active search bounds.
-* **Complexity Comparison**: Summary table detailing when to choose linear vs binary search.
+### 1. `BinarySearchTree.java` & `Tree.java` — Complete Binary Search Tree (BST)
+* **Core Operations**:
+  * `insert(val)`: Recursive insertion with duplicate-rejection warning ($\mathcal{O}(\log n)$ average).
+  * `delete(val)`: Handles all 3 structural cases:
+    1. Leaf node (0 children) $\rightarrow$ direct pruning.
+    2. Node with 1 child $\rightarrow$ bypass replacement.
+    3. Node with 2 children $\rightarrow$ swap with **In-Order Successor** (smallest in right subtree) and recurse.
+  * `contains(val)` / `search(val)`: Binary search navigation down the tree.
+* **Traversals**:
+  * **In-Order** (Left $\rightarrow$ Root $\rightarrow$ Right): Generates ascending sorted elements.
+  * **Pre-Order** (Root $\rightarrow$ Left $\rightarrow$ Right): Useful for tree cloning and serialization.
+  * **Post-Order** (Left $\rightarrow$ Right $\rightarrow$ Root): Useful for bottom-up node destruction and expression trees.
+  * **Level-Order (Breadth-First Search / BFS)**: Traverses horizontally level-by-level using a FIFO Queue.
+* **Tree Metrics & Properties**:
+  * `getHeight()`: Edge count on the longest root-to-leaf path.
+  * `getDepth(val)`: Edge count from root to the target node.
+  * `getSize()`: Total number of active nodes.
+  * `getMin()` & `getMax()`: Leftmost and rightmost extremes.
+  * `countLeaves()`: Total count of childless leaf nodes.
+* **Visual 2D ASCII Tree Diagram**: Renders the complete tree hierarchy in terminal with branched ASCII connectors (`└──`, `├──`, `│`).
 
 ---
 
-### 2. `SortingAlgorithms.java` — Sorting Algorithms with Visual Dry Runs
-* **Bubble Sort**:
-  * Step-by-step adjacent element comparisons and swaps.
-  * Displays array state after every pass with sorted suffix partition marker (`|`).
-  * Optimized with early termination flag (`swapped`) achieving $\mathcal{O}(n)$ best-case time.
-* **Selection Sort**:
-  * Unsorted subarray scanning to identify the global minimum element.
-  * Swaps minimum into place with visual sorted prefix partition marker (`|`).
-  * Time Complexity: $\mathcal{O}(n^2)$ across all cases, Space $\mathcal{O}(1)$.
-* **Insertion Sort**:
-  * Step-by-step card-deck pickup of `key` element.
-  * Shows right-shifting of larger elements and exact insertion slot.
-  * Best-case $\mathcal{O}(n)$ for nearly sorted data, Space $\mathcal{O}(1)$.
-* **Quick Sort**:
-  * Divide and Conquer using the **Lomuto Partitioning Scheme**.
-  * Shows pivot selection (last element), boundary pointer movements, element swaps, and recursion tree.
-  * Average time $\mathcal{O}(n \log n)$, Space $\mathcal{O}(\log n)$ stack.
-* **Algorithm Comparison Table**: In-depth cheat sheet covering Best, Average, Worst times, Auxiliary Space, Stability, and In-Place attributes.
-
----
-
-### 3. Data Structures Suite
+### 2. Data Structures Suite (Queue, Stack, LinkedList)
 * **`Queue.java`**: Circular Array-based Queue implementation (FIFO) with dynamic user capacity, modulo wrap-around `(index + 1) % capacity`, and full CLI menu (`enqueue`, `dequeue`, `peek`, `display`).
 * **`Stack.java`**: Array-based Stack implementation (LIFO) with user-defined initial capacity via `Scanner` and full interactive CLI menu (`push`, `pop`, `peek`, `display`).
 * **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive console menu and documented time complexities.
 
 ---
 
-### 4. `OopsMastery.java` — Complete Object-Oriented Programming (OOP) Suite
-* **Encapsulation & Data Hiding**: Private state, invariant validation, authorized getters/mutators, and defensive copying.
-* **Constructors & Chaining**: Default, parameterized, and copy constructors with `this(...)` and `super(...)` chaining.
-* **Inheritance & Hierarchy**: Single, multilevel, hierarchical; IS-A vs HAS-A (Composition).
-* **Polymorphism**: Compile-time method overloading vs Runtime dynamic method dispatch (`@Override`) and covariant return types.
-* **Abstraction**: Abstract classes (Template Method Pattern) vs Modern Interfaces (`default`, `static`, and `private` methods, Diamond problem resolution).
-* **Keywords Deep Dive**: `static` (variables, methods, blocks, method hiding), `final` (variables, methods, classes), and `finally` block execution guarantee.
+### 3. `SearchAlgorithms.java` & `SortingAlgorithms.java`
+* **Searching Algorithms**:
+  * Linear Search with live index-by-index comparison dry run.
+  * Binary Search (Iterative & Recursive) with search-space halving and pointer tracking (`low`, `mid`, `high`).
+* **Sorting Algorithms**:
+  * Bubble Sort with optimized `swapped` early-exit flag.
+  * Selection Sort with live minimum scan.
+  * Insertion Sort with card-deck shifting.
+  * Quick Sort with **Lomuto Partitioning Scheme** recursion trace.
 
 ---
 
-### 5. `CollectionsMastery.java`, `StreamMastery.java` & `LambdaMastery.java`
-* **Collections**: `List` (ArrayList, LinkedList, Vector, Stack), `Set` (HashSet, LinkedHashSet, TreeSet), `Queue`/`Deque` (PriorityQueue, ArrayDeque), `Map` (HashMap, LinkedHashMap with LRU cache, TreeMap, ConcurrentHashMap), and fail-fast iterators.
-* **Streams**: Creation, intermediate operations (`filter`, `map`, `flatMap`, `distinct`, `sorted`, `peek`, `limit`, `skip`), advanced collectors (`groupingBy`, `partitioningBy`, `joining`, `summarizingDouble`), reductions, and parallel streams.
-* **Lambdas**: Evolution from anonymous classes, standard `java.util.function` interfaces, chaining (`and`, `or`, `andThen`, `compose`), method references, and closures.
-
----
-
-### 6. `AdvancedCoreJava.java`
-* **Wrappers & Memory**: Integer cache pool ($-128$ to $127$), `==` vs `.equals()`, unboxing NPE.
-* **`Optional<T>`**: Idiomatic null safety, `ifPresentOrElse`, `map`, eager `orElse()` vs lazy `orElseGet()`.
-* **Strict Pass-by-Value**: State mutation vs reference reassignment.
-* **Objects in Collections**: `equals()` and `hashCode()` contract, live duplicate bug demo with `BrokenKey`, and defensive copying.
-* **Concurrency**: `Callable<V>`, `Future<V>`, `ExecutorService`, `ReentrantLock`, and `AtomicInteger` CAS.
+### 4. Core Java & OOP Suites
+* **`OopsMastery.java`**: Encapsulation, inheritance, polymorphism (static vs dynamic), abstraction, interfaces, `static`, `final`, `finally`.
+* **`CollectionsMastery.java`**: Complete Collections Framework (`List`, `Set`, `Queue`, `Deque`, `Map`, LRU cache, iterators).
+* **`StreamMastery.java`**: Stream sources, intermediate operations, advanced collectors, reductions, lazy evaluation, and parallel streams.
+* **`LambdaMastery.java`**: Built-in functional interfaces, chaining, method references, and closures.
+* **`AdvancedCoreJava.java`**: Integer cache, `Optional`, strict pass-by-value proof, `equals`/`hashCode` contract, and multithreading (`Callable`, `Future`, `ExecutorService`).
 
 ---
 
@@ -126,17 +109,25 @@ javac *.java
 ### Execution Commands
 
 ```bash
-# Run Searching Algorithms with Visual Dry Runs
-java SearchAlgorithms
-
-# Run Sorting Algorithms with Visual Dry Runs
-java SortingAlgorithms
+# Run Binary Search Tree (BST)
+java BinarySearchTree
+# or simply:
+java Tree
 
 # Run Queue Data Structure (FIFO)
 java Queue
 
 # Run Stack Data Structure (LIFO)
 java Stack
+
+# Run Singly Linked List Interactive CLI
+java LinkedList
+
+# Run Searching Algorithms with Visual Dry Runs
+java SearchAlgorithms
+
+# Run Sorting Algorithms with Visual Dry Runs
+java SortingAlgorithms
 
 # Run Complete OOP Suite
 java OopsMastery
@@ -152,9 +143,6 @@ java LambdaMastery
 
 # Run Advanced Core Java (Wrappers, Optional, References, Concurrency)
 java AdvancedCoreJava
-
-# Run Singly Linked List Interactive CLI
-java LinkedList
 ```
 
 ---
