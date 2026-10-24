@@ -20,7 +20,9 @@ my-java-practice/
 ├── TypeInference.java      # Modern Java: Local Variable Type Inference (var) & Records
 ├── LinkedList.java         # Interactive Singly Linked List Data Structure CLI
 ├── Node.java               # Node class supporting the Singly Linked List
-├── Stack.java              # Custom Resizable Stack (LIFO) Data Structure
+├── Stack.java              # Custom Array-based Stack (LIFO) with User-defined Size CLI
+├── Queue.java              # Custom Circular Queue (FIFO) with User-defined Size CLI
+├── DynamicStack.java       # Dynamic Stack Practice
 ├── .gitignore              # Git exclusion rules for compiled classes & system files
 └── README.md               # Project documentation and usage guide
 ```
@@ -94,12 +96,10 @@ my-java-practice/
 
 ---
 
-### 6. Core Practice & Data Structures
-* **`Hello.java`**: Core OOP, constructor chaining, inner classes, runtime polymorphism, and synchronized multithreading.
-* **`Demo.java`**: `Comparable<Student>` vs `Comparator` strategies, stream operations, and stream lifecycle.
-* **`TypeInference.java`**: Local Variable Type Inference (`var`) and immutable Java records.
-* **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive console menu.
-* **`Stack.java`**: Custom dynamic array-based stack with auto-resizing.
+### 6. Data Structures Suite
+* **`Queue.java`**: Circular Array-based Queue implementation (FIFO) with dynamic user capacity, modulo wrap-around, and full CLI menu (`enqueue`, `dequeue`, `peek`, `display`).
+* **`Stack.java`**: Array-based Stack implementation (LIFO) with user-defined initial capacity via `Scanner` and full interactive CLI menu (`push`, `pop`, `peek`, `display`).
+* **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive console menu and documented time complexities.
 
 ---
 
@@ -126,6 +126,12 @@ javac *.java
 ### Execution Commands
 
 ```bash
+# Run Queue Data Structure (FIFO)
+java Queue
+
+# Run Stack Data Structure (LIFO)
+java Stack
+
 # Run Complete OOP Suite
 java OopsMastery
 
@@ -141,20 +147,8 @@ java LambdaMastery
 # Run Advanced Core Java (Wrappers, Optional, References, Concurrency)
 java AdvancedCoreJava
 
-# Run Core Practice Demonstration
-java Hello
-
-# Run Collections & Streams Demo
-java Demo
-
-# Run Type Inference & Records
-java TypeInference
-
 # Run Singly Linked List Interactive CLI
 java LinkedList
-
-# Run Custom Stack Demo
-java Stack
 ```
 
 ---
