@@ -10,13 +10,14 @@ Every file in this repository is designed to be self-explanatory, featuring deta
 
 ```text
 my-java-practice/
-├── Hello.java              # Core OOP, Inner Classes, Exceptions, Concurrency & Lambdas
-├── Demo.java               # Collections Framework, Comparable vs Comparator & Stream API
-├── TypeInference.java      # Modern Java: Local Variable Type Inference (var) & Records
+├── OopsMastery.java        # Comprehensive OOP: Pillars, Constructors, static, final, Interfaces
 ├── CollectionsMastery.java # Deep Dive: List, Set, Queue, Deque, Map, Iterators, LRU Cache
 ├── StreamMastery.java      # Deep Dive: Sources, Operations, Advanced Collectors, Parallelism
 ├── LambdaMastery.java      # Deep Dive: Evolution, Built-in Interfaces, Method Refs, Closures
 ├── AdvancedCoreJava.java   # Deep Dive: Wrappers, Optional, Pass-by-Value, Objects in Collections
+├── Hello.java              # Core OOP, Inner Classes, Exceptions, Concurrency & Lambdas
+├── Demo.java               # Collections Framework, Comparable vs Comparator & Stream API
+├── TypeInference.java      # Modern Java: Local Variable Type Inference (var) & Records
 ├── LinkedList.java         # Interactive Singly Linked List Data Structure CLI
 ├── Node.java               # Node class supporting the Singly Linked List
 ├── Stack.java              # Custom Resizable Stack (LIFO) Data Structure
@@ -28,106 +29,77 @@ my-java-practice/
 
 ## 🎯 Modules & Concepts Covered
 
-### 1. `CollectionsMastery.java` — Complete Collections Framework
-* **`List` Interface**:
-  * `ArrayList`: Dynamic array, fast indexed random access $\mathcal{O}(1)$.
-  * `LinkedList`: Doubly-linked list, fast head/tail manipulation $\mathcal{O}(1)$.
-  * `Vector` & `Stack`: Synchronized legacy collections vs modern alternatives.
-* **`Set` Interface**:
-  * `HashSet`: Unordered, null-permitting, unique elements with average $\mathcal{O}(1)$ operations.
-  * `LinkedHashSet`: Maintains predictable element insertion order.
-  * `TreeSet`: Red-Black tree backed, natural/custom sorting, and `NavigableSet` range operations (`subSet`, `lower`, `higher`, `descendingSet`).
-* **`Queue` & `Deque` Interface**:
-  * `PriorityQueue`: Min-heap priority processing.
-  * `ArrayDeque`: Modern high-performance replacement for both `Stack` (LIFO) and `Queue` (FIFO).
-* **`Map` Interface**:
-  * `HashMap`: Fast $\mathcal{O}(1)$ key-value lookups, null handling, `getOrDefault()`.
-  * `LinkedHashMap`: Access-order LRU (Least Recently Used) cache demonstration with eviction policy.
-  * `TreeMap`: Key-sorted navigation (`firstKey`, `headMap`).
-  * `ConcurrentHashMap`: Thread-safe segment locking without global synchronization.
-* **Iterators & Concurrency**:
-  * `Iterator` vs `ListIterator` (bidirectional traversal, index retrieval).
-  * Safe in-flight deletion with `iterator.remove()` vs fail-fast `ConcurrentModificationException`.
-* **Modern Collection Factories & Utilities**:
-  * `List.of()`, `Set.of()`, `Map.of()` immutable collections.
-  * `Collections.sort()`, `frequency()`, `binarySearch()`, `shuffle()`, `reverse()`, `min()`, `max()`.
+### 1. `OopsMastery.java` — Complete Object-Oriented Programming (OOP) Suite
+* **Encapsulation & Data Hiding**: Private state, invariant validation, authorized getters/mutators, and defensive copying.
+* **Constructors & Chaining**:
+  * Default constructors, multi-parameter constructors, and Copy constructors.
+  * Same-class chaining via `this(...)`.
+  * Superclass chaining via `super(...)`.
+* **Inheritance & Object Hierarchies**: Single, multilevel, and hierarchical relationships; IS-A (inheritance) vs HAS-A (composition/aggregation).
+* **Polymorphism**:
+  * *Compile-time (Static binding)*: Method overloading and automatic type promotion.
+  * *Runtime (Dynamic binding)*: Method overriding (`@Override`), dynamic method dispatch, and covariant return types.
+* **Abstraction**:
+  * *Abstract Classes*: State retention, constructors, template method design pattern.
+  * *Modern Interfaces (Java 8/9+)*: Abstract methods, `default` methods, `static` utility methods, `private` helper methods, and resolving the Diamond Problem.
+* **The `static` Keyword**:
+  * Static variables (class-level shared state) vs instance variables.
+  * Static initialization block vs Instance initialization block execution lifecycle.
+  * Static methods and compile-time **Method Hiding** (vs runtime method overriding).
+* **The `final` Keyword**:
+  * Final variables (compile-time constants & blank finals).
+  * Final methods (tamper prevention / prohibiting override).
+  * Final classes (preventing subclassing / immutability).
+* **The `finally` Block**: Guaranteed execution (even with `return` statements) and comparative analysis: `final` vs `finally` vs `finalize()`.
 
 ---
 
-### 2. `StreamMastery.java` — Comprehensive Stream API Guide
-* **Stream Sources**: Creation from Collections, Arrays, `Stream.of()`, `Stream.iterate()`, `Stream.generate()`, and `IntStream.rangeClosed()`.
-* **Intermediate Operations (Lazy Pipelines)**:
-  * `filter()`, `map()`, and `flatMap()` (flattening 1-to-many relationships).
-  * `distinct()`, `sorted()`, and non-intrusive debugging with `peek()`.
-  * Pagination with `skip()` and `limit()`.
-* **Terminal Operations & Advanced Collectors**:
-  * `Collectors.groupingBy()`: Multi-level classification.
-  * `Collectors.partitioningBy()`: Boolean predicate partitioning.
-  * `Collectors.joining()`: Formatted delimited string output.
-  * `Collectors.summarizingDouble()`: Single-pass statistical analysis (count, sum, min, average, max).
-* **Reductions & Queries**: `reduce()` with/without identity, short-circuit matching (`anyMatch`, `allMatch`, `noneMatch`), and `findFirst()`.
-* **Primitive Streams**: `IntStream` and `DoubleStream` avoiding wrapper boxing overhead.
-* **Lazy Evaluation Verification**: Proving intermediate steps execute only when terminal operations are invoked.
-* **Parallel Streams**: Multi-core throughput via `parallelStream()` and avoiding shared mutable state pitfalls using `AtomicInteger`.
+### 2. `CollectionsMastery.java` — Complete Collections Framework
+* **`List` Interface**: `ArrayList` ($\mathcal{O}(1)$ random access), `LinkedList` ($\mathcal{O}(1)$ head/tail), legacy synchronized `Vector`, and `Stack`.
+* **`Set` Interface**: `HashSet` ($\mathcal{O}(1)$ unique), `LinkedHashSet` (insertion-ordered), and `TreeSet` (Red-Black tree, `NavigableSet` range operations).
+* **`Queue` & `Deque` Interface**: `PriorityQueue` (min-heap) and `ArrayDeque` (modern LIFO/FIFO replacement).
+* **`Map` Interface**: `HashMap`, `LinkedHashMap` (LRU access-order cache), `TreeMap` (key-sorted navigation), and `ConcurrentHashMap` (thread-safe bucket locks).
+* **Iterators & Concurrency**: Unidirectional `Iterator` vs bidirectional `ListIterator`, safe deletion, and fail-fast `ConcurrentModificationException`.
+* **Modern Factories & Utilities**: `List.of()`, `Set.of()`, `Map.of()`, and `Collections` algorithms.
 
 ---
 
-### 3. `LambdaMastery.java` — Lambdas & Functional Programming
-* **Evolution of Functional Code**: From verbose Anonymous Inner Classes to block lambdas, concise expressions, and Method References.
-* **Standard `java.util.function` Interfaces**:
-  * `Predicate<T>` & `BiPredicate<T, U>`
-  * `Function<T, R>` & `BiFunction<T, U, R>`
-  * `Consumer<T>` & `BiConsumer<T, U>`
-  * `Supplier<T>`
-  * `UnaryOperator<T>` & `BinaryOperator<T>`
-* **Composition & Chaining**:
-  * Predicate logic: `.and()`, `.or()`, `.negate()`.
-  * Function pipelines: `.andThen()` vs `.compose()`.
-* **The 4 Types of Method References**:
-  1. Static method reference (`Double::parseDouble`)
-  2. Bound instance method reference (`outputChannel::println`)
-  3. Unbound instance method reference of an arbitrary object (`String::toUpperCase`)
-  4. Constructor reference (`UserAccount::new`)
-* **Closures & Variable Capture**: The "effectively final" rule and compiler restrictions.
-* **Higher-Order Functions**: Passing functions as arguments and returning dynamically generated functions (currying/factories).
+### 3. `StreamMastery.java` — Comprehensive Stream API Guide
+* **Stream Sources**: Creation from Collections, Arrays, `Stream.of()`, `Stream.iterate()`, `Stream.generate()`, and `IntStream`.
+* **Intermediate Operations**: `filter()`, `map()`, `flatMap()` (1-to-many flattening), `distinct()`, `sorted()`, `peek()`, `skip()`, and `limit()`.
+* **Terminal Operations & Advanced Collectors**: `Collectors.groupingBy()`, `partitioningBy()`, `joining()`, `summarizingDouble()`, and `reduce()`.
+* **Primitive Streams**: `IntStream` and `DoubleStream` avoiding wrapper overhead.
+* **Lazy Evaluation**: Proves intermediate operations execute strictly on terminal demand.
+* **Parallel Streams**: Thread-safe concurrency scaling via `parallelStream()` and atomic synchronization.
 
 ---
 
-### 4. `AdvancedCoreJava.java` — Critical Core Java Concepts
-* **Wrapper Classes & Memory Caching**:
-  * Primitive vs Object wrappers, autoboxing, and auto-unboxing.
-  * The `IntegerCache` pool ($-128$ to $127$) proving why reference equality (`==`) fails on wrappers and `.equals()` is required.
-  * Avoiding `NullPointerException` during unboxing.
-* **`Optional<T>` (Idiomatic Null Safety)**:
-  * Creation (`of`, `ofNullable`, `empty`).
-  * Inspection (`isPresent`, `isEmpty`, `ifPresent`, `ifPresentOrElse`).
-  * Transformation (`map`, `filter`, `flatMap`).
-  * Fallbacks: Eager `orElse()` vs Lazy `orElseGet()` and `orElseThrow()`.
-* **Strict Pass-by-Value Semantics in Java**:
-  * Primitives passed by value (original remains unchanged).
-  * Object references passed by value (a copy of the reference handle is passed):
-    * Mutating internal object state affects the original heap object.
-    * Reassigning the parameter reference has ZERO effect on caller's reference.
-* **Using Objects in Collections (`equals` & `hashCode` Contract)**:
-  * The mathematical and logical requirement for overriding both `equals()` and `hashCode()`.
-  * Live demonstration of duplicate entries inside a `HashSet` when `hashCode()` is omitted.
-  * Dangers of mutating objects after using them as Map keys.
-  * Defensive copying pattern (`new ArrayList<>(list)`, `Collections.unmodifiableList(list)`).
-* **Multithreading & Concurrency**:
-  * `Callable<V>` returning values and throwing checked exceptions.
-  * `Future<V>` asynchronous retrieval via `ExecutorService`.
-  * Thread synchronization with `ReentrantLock`.
-  * Lock-free atomic operations via `AtomicInteger` (Compare-And-Swap).
-* **Advanced Records**: Local records within method scopes and pattern matching with records (`instanceof Point(int x, int y)`).
+### 4. `LambdaMastery.java` — Lambdas & Functional Programming
+* **Evolution**: Anonymous Inner Class $\rightarrow$ explicit lambda $\rightarrow$ concise expression $\rightarrow$ Method Reference.
+* **Core Interfaces**: `Predicate`, `BiPredicate`, `Function`, `BiFunction`, `Consumer`, `BiConsumer`, `Supplier`, `UnaryOperator`, `BinaryOperator`.
+* **Composition & Chaining**: `.and()`, `.or()`, `.negate()`, `.andThen()`, `.compose()`.
+* **The 4 Method Reference Types**: Static, bound instance, unbound instance, and constructor references.
+* **Closures**: Variable capture and the "effectively final" rule.
+* **Higher-Order Functions**: Methods taking and returning customized functions.
 
 ---
 
-### 5. `Hello.java`, `Demo.java`, `TypeInference.java` & Data Structures
-* **`Hello.java`**: Core OOP, constructor chaining (`super`), member/anonymous inner classes, runtime polymorphism, custom exceptions, and synchronized multithreading.
-* **`Demo.java`**: Natural sorting with `Comparable<Student>` vs custom `Comparator` strategies, stream filtering, and stream single-use lifecycle.
-* **`TypeInference.java`**: Local Variable Type Inference (`var`) rules and immutable Java `record Alien`.
-* **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive menu and documented time complexities.
-* **`Stack.java`**: Custom dynamic array-based stack with auto-resizing and underflow protection.
+### 5. `AdvancedCoreJava.java` — Wrappers, Optional, References, Collections & Concurrency
+* **Wrapper Classes & Memory Caching**: Integer Cache ($-128$ to $127$), reference vs value equality, and NPE unboxing pitfalls.
+* **`Optional<T>`**: `of`, `ofNullable`, `ifPresentOrElse`, `map`, `filter`, and eager `orElse()` vs lazy `orElseGet()`.
+* **Strict Pass-by-Value Semantics**: Clear demonstration of state mutation vs reference reassignment.
+* **Objects in Collections**: The `equals()` and `hashCode()` contract, live duplicate bug demo with `BrokenKey`, and defensive copying.
+* **Multithreading**: `Callable<V>`, `Future<V>`, `ExecutorService`, `ReentrantLock`, and `AtomicInteger` CAS.
+* **Modern Records**: Local records and pattern matching deconstruction.
+
+---
+
+### 6. Core Practice & Data Structures
+* **`Hello.java`**: Core OOP, constructor chaining, inner classes, runtime polymorphism, and synchronized multithreading.
+* **`Demo.java`**: `Comparable<Student>` vs `Comparator` strategies, stream operations, and stream lifecycle.
+* **`TypeInference.java`**: Local Variable Type Inference (`var`) and immutable Java records.
+* **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive console menu.
+* **`Stack.java`**: Custom dynamic array-based stack with auto-resizing.
 
 ---
 
@@ -154,6 +126,9 @@ javac *.java
 ### Execution Commands
 
 ```bash
+# Run Complete OOP Suite
+java OopsMastery
+
 # Run Collections Deep Dive
 java CollectionsMastery
 
@@ -166,7 +141,7 @@ java LambdaMastery
 # Run Advanced Core Java (Wrappers, Optional, References, Concurrency)
 java AdvancedCoreJava
 
-# Run Core OOP Demonstration
+# Run Core Practice Demonstration
 java Hello
 
 # Run Collections & Streams Demo
@@ -186,15 +161,11 @@ java Stack
 
 ## 🌐 Pushing to GitHub
 
-To push this repository to your GitHub account under `my-java-practice`:
+To push your latest commits to GitHub:
 
-1. Create a new repository on [GitHub](https://github.com/new) named **`my-java-practice`** (leave **Initialize this repository with a README** unchecked).
-2. Run the following commands in your terminal:
-   ```bash
-   git remote add origin https://github.com/<your-username>/my-java-practice.git
-   git branch -M main
-   git push -u origin main
-   ```
+```bash
+git push origin main
+```
 
 ---
 
