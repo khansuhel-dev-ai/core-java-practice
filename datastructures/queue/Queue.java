@@ -1,22 +1,4 @@
-/**
- * ============================================================================
- * File: Queue.java
- * Repository: my-java-practice
- * Description: Full-fledged Array-based Circular Queue Data Structure (FIFO).
- *   - enqueue(int data) : Insert element at rear O(1)
- *   - dequeue()         : Remove and return element from front O(1)
- *   - peek()            : Inspect element at front O(1)
- *   - isEmpty()         : Check if queue is empty O(1)
- *   - isFull()          : Check if queue has reached capacity O(1)
- *   - display()         : Traverse elements in FIFO order (Front to Rear) O(n)
- *   - Circular array wrapping using modulo arithmetic to prevent space leakage.
- *   - Dynamic capacity configuration via user input & interactive menu driver.
- *
- * How to Compile & Run:
- *   javac Queue.java
- *   java Queue
- * ============================================================================
- */
+package datastructures.queue;
 
 import java.util.Scanner;
 
@@ -26,12 +8,10 @@ class QueueDemo {
     private int rear;
     private int size;
 
-    // Default constructor (defaults to capacity of 10)
     public QueueDemo() {
         this(10);
     }
 
-    // Parameterized constructor setting capacity from user input
     public QueueDemo(int capacity) {
         if (capacity <= 0) {
             System.out.println("Warning: Capacity must be positive. Defaulting to 5.");
@@ -59,41 +39,29 @@ class QueueDemo {
         return size == nums.length;
     }
 
-    /**
-     * Inserts an element at the rear of the circular queue.
-     * Time Complexity: O(1)
-     */
     public void enqueue(int num) {
         if (isFull()) {
             System.out.println("Queue is full! Cannot enqueue " + num);
             return;
         }
         nums[rear] = num;
-        rear = (rear + 1) % nums.length; // Circular wrapping
+        rear = (rear + 1) % nums.length;
         size++;
         System.out.println("Successfully enqueued: " + num);
     }
 
-    /**
-     * Removes and returns the element at the front of the circular queue.
-     * Time Complexity: O(1)
-     */
     public int dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty! Cannot dequeue.");
             return -1;
         }
         int num = nums[front];
-        front = (front + 1) % nums.length; // Circular wrapping
+        front = (front + 1) % nums.length;
         size--;
         System.out.println("Dequeued: " + num);
         return num;
     }
 
-    /**
-     * Returns the front element without removing it.
-     * Time Complexity: O(1)
-     */
     public int peek() {
         if (isEmpty()) {
             System.out.println("Queue is empty! Cannot peek.");
@@ -103,10 +71,6 @@ class QueueDemo {
         return nums[front];
     }
 
-    /**
-     * Displays all elements currently in the queue from Front to Rear.
-     * Time Complexity: O(n)
-     */
     public void display() {
         if (isEmpty()) {
             System.out.println("Queue is empty: [ ]");
@@ -129,7 +93,6 @@ public class Queue {
         System.out.println("         CUSTOM QUEUE PRACTICE (FIFO)    ");
         System.out.println("=========================================");
 
-        // Take queue size as input from the user
         System.out.print("Enter the size of the queue: ");
         while (!scanner.hasNextInt()) {
             System.out.print("Invalid input. Please enter a positive integer for queue size: ");
@@ -137,7 +100,6 @@ public class Queue {
         }
         int userSize = scanner.nextInt();
 
-        // Create the queue with user-defined capacity
         QueueDemo queue = new QueueDemo(userSize);
         System.out.println("Queue created with capacity: " + queue.getCapacity());
 

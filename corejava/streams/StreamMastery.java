@@ -1,3 +1,5 @@
+package corejava.streams;
+
 /**
  * ============================================================================
  * File: StreamMastery.java

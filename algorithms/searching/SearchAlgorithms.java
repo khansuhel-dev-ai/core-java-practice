@@ -1,3 +1,5 @@
+package algorithms.searching;
+
 /**
  * ============================================================================
  * File: SearchAlgorithms.java

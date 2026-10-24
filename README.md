@@ -1,88 +1,119 @@
 # ☕ my-java-practice
 
-A comprehensive, production-grade Core Java practice repository demonstrating essential OOP principles, modern Java language features, multithreading, the Collections Framework, the Stream API, Lambda expressions, fundamental data structures (Tree, Queue, Stack, LinkedList), and searching & sorting algorithms with step-by-step visual dry runs.
-
-Every file in this repository is designed to be self-explanatory, featuring detailed inline Javadoc explanations, clear output messages, and runnable examples.
+A modular, production-grade Java repository structured into industry-standard packages. Covers core OOP concepts, modern Java language features (Streams, Lambdas, Records, Type Inference), the Collections Framework, fundamental & advanced Data Structures (Linked Lists, Stacks, Queues, Trees, Graphs, Arrays), Strings, and Searching & Sorting algorithms with step-by-step visual dry runs.
 
 ---
 
-## 📂 Repository Structure
+## 📂 Modular Package Architecture
 
 ```text
 my-java-practice/
-├── BinarySearchTree.java   # Full-Fledged BST: Insert, Delete, Search, Traversals, Height, Depth, 2D Tree Diagram
-├── Tree.java               # Direct CLI alias for BinarySearchTree
-├── Queue.java              # Custom Circular Queue (FIFO) with User-defined Size CLI
-├── Stack.java              # Custom Array-based Stack (LIFO) with User-defined Size CLI
-├── DynamicStack.java       # Dynamic Stack Practice
-├── LinkedList.java         # Interactive Singly Linked List Data Structure CLI
-├── Node.java               # Node class supporting the Singly Linked List
-├── SearchAlgorithms.java   # Searching: Linear Search & Binary Search (Iterative & Recursive) with Dry Runs
-├── SortingAlgorithms.java  # Sorting: Bubble, Selection, Insertion & Quick Sort with Visual Dry Runs
-├── OopsMastery.java        # Comprehensive OOP: Pillars, Constructors, static, final, Interfaces
-├── CollectionsMastery.java # Deep Dive: List, Set, Queue, Deque, Map, Iterators, LRU Cache
-├── StreamMastery.java      # Deep Dive: Sources, Operations, Advanced Collectors, Parallelism
-├── LambdaMastery.java      # Deep Dive: Evolution, Built-in Interfaces, Method Refs, Closures
-├── AdvancedCoreJava.java   # Deep Dive: Wrappers, Optional, Pass-by-Value, Objects in Collections
-├── Hello.java              # Core OOP, Inner Classes, Exceptions, Concurrency & Lambdas
-├── Demo.java               # Collections Framework, Comparable vs Comparator & Stream API
-├── TypeInference.java      # Modern Java: Local Variable Type Inference (var) & Records
-├── .gitignore              # Git exclusion rules for compiled classes & system files
-└── README.md               # Project documentation and usage guide
+│
+├── datastructures/
+│   ├── common/
+│   │   ├── Node.java              # Generic Node<T> for linear structures (Singly, Doubly, Circular)
+│   │   └── TreeNode.java          # Generic TreeNode<T> for hierarchical structures (BST, Binary Tree)
+│   ├── linkedlist/
+│   │   ├── SinglyLinkedList.java  # Singly Linked List (Insert, Delete, Display, Search)
+│   │   ├── DoublyLinkedList.java  # Doubly Linked List (Bidirectional: Forward & Backward Traversal)
+│   │   └── CircularLinkedList.java# Circular Linked List (Tail connected to Head, Loop-safe display)
+│   ├── stack/
+│   │   ├── Stack.java             # Array-based Stack (LIFO) with user-defined dynamic size & CLI
+│   │   └── DynamicStack.java      # Resizable Stack auto-doubling capacity on overflow
+│   ├── queue/
+│   │   └── Queue.java             # Circular Queue (FIFO) with modulo wrap-around & CLI
+│   ├── tree/
+│   │   └── BinarySearchTree.java  # BST: Insert, Delete, Traversals, Height, Depth, 2D ASCII Display
+│   ├── graph/
+│   │   └── Graph.java             # Adjacency List Graph (BFS, DFS, Pathfinding, Cycle Detection)
+│   └── array/
+│       └── ArrayOperations.java   # Operations on int[], char[], double[], and String[]
+│
+├── strings/
+│   └── StringOperations.java      # Methods, String Pool, Immutability, StringBuilder vs StringBuffer, Algorithms
+│
+├── algorithms/
+│   ├── searching/
+│   │   └── SearchAlgorithms.java  # Linear Search & Binary Search (Iterative & Recursive) with dry runs
+│   └── sorting/
+│       └── SortingAlgorithms.java # Bubble, Selection, Insertion & Quick Sort with visual dry runs
+│
+├── corejava/
+│   ├── oop/
+│   │   ├── OopsMastery.java       # Encapsulation, Inheritance, Polymorphism, Abstraction, static, final, finally
+│   │   └── Hello.java             # Core OOP, Inner Classes, Exceptions, Concurrency & Lambdas
+│   ├── collections/
+│   │   ├── CollectionsMastery.java# Deep Dive: List, Set, Queue, Deque, Map, Iterators, LRU Cache
+│   │   └── Demo.java              # Collections Framework, Comparable vs Comparator & Stream API
+│   ├── streams/
+│   │   └── StreamMastery.java     # Sources, Operations, Advanced Collectors, Parallelism, Lazy Evaluation
+│   ├── lambdas/
+│   │   └── LambdaMastery.java     # Evolution, Built-in Interfaces, Method Refs, Closures, Higher-Order Functions
+│   └── advanced/
+│       ├── AdvancedCoreJava.java  # Wrappers, Optional, Pass-by-Value, Objects in Collections
+│       └── TypeInference.java     # Modern Java: Local Variable Type Inference (var) & Records
+│
+├── .gitignore                     # Git exclusion rules for compiled classes & system files
+└── README.md                      # Project documentation and package guide
 ```
 
 ---
 
-## 🎯 Modules & Concepts Covered
+## 🎯 Package Breakdown & Features
 
-### 1. `BinarySearchTree.java` & `Tree.java` — Complete Binary Search Tree (BST)
-* **Core Operations**:
-  * `insert(val)`: Recursive insertion with duplicate-rejection warning ($\mathcal{O}(\log n)$ average).
-  * `delete(val)`: Handles all 3 structural cases:
-    1. Leaf node (0 children) $\rightarrow$ direct pruning.
-    2. Node with 1 child $\rightarrow$ bypass replacement.
-    3. Node with 2 children $\rightarrow$ swap with **In-Order Successor** (smallest in right subtree) and recurse.
-  * `contains(val)` / `search(val)`: Binary search navigation down the tree.
-* **Traversals**:
-  * **In-Order** (Left $\rightarrow$ Root $\rightarrow$ Right): Generates ascending sorted elements.
-  * **Pre-Order** (Root $\rightarrow$ Left $\rightarrow$ Right): Useful for tree cloning and serialization.
-  * **Post-Order** (Left $\rightarrow$ Right $\rightarrow$ Root): Useful for bottom-up node destruction and expression trees.
-  * **Level-Order (Breadth-First Search / BFS)**: Traverses horizontally level-by-level using a FIFO Queue.
-* **Tree Metrics & Properties**:
-  * `getHeight()`: Edge count on the longest root-to-leaf path.
-  * `getDepth(val)`: Edge count from root to the target node.
-  * `getSize()`: Total number of active nodes.
-  * `getMin()` & `getMax()`: Leftmost and rightmost extremes.
-  * `countLeaves()`: Total count of childless leaf nodes.
-* **Visual 2D ASCII Tree Diagram**: Renders the complete tree hierarchy in terminal with branched ASCII connectors (`└──`, `├──`, `│`).
+### 1. `datastructures.common`
+* **[`Node<T>`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/common/Node.java)**: Shared generic node with `data`, `next`, and `prev` pointers, powering Singly, Doubly, and Circular Linked Lists.
+* **[`TreeNode<T>`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/common/TreeNode.java)**: Shared generic tree node with `data`, `left`, and `right` child pointers, powering Tree and BST structures.
 
----
+### 2. `datastructures.linkedlist`
+* **[`SinglyLinkedList`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/linkedlist/SinglyLinkedList.java)**: $\mathcal{O}(1)$ start insertion, $\mathcal{O}(n)$ end/position insertion and deletion.
+* **[`DoublyLinkedList`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/linkedlist/DoublyLinkedList.java)**: Bidirectional pointer linkage with forward (`Head -> Tail`) and backward (`Tail -> Head`) traversals.
+* **[`CircularLinkedList`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/linkedlist/CircularLinkedList.java)**: Tail node linked back to head (`tail.next == head`), with loop-safe traversal and deletion.
 
-### 2. Data Structures Suite (Queue, Stack, LinkedList)
-* **`Queue.java`**: Circular Array-based Queue implementation (FIFO) with dynamic user capacity, modulo wrap-around `(index + 1) % capacity`, and full CLI menu (`enqueue`, `dequeue`, `peek`, `display`).
-* **`Stack.java`**: Array-based Stack implementation (LIFO) with user-defined initial capacity via `Scanner` and full interactive CLI menu (`push`, `pop`, `peek`, `display`).
-* **`LinkedList.java` & `Node.java`**: Singly linked list with an interactive console menu and documented time complexities.
+### 3. `datastructures.stack`
+* **[`Stack`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/stack/Stack.java)**: Array-based LIFO stack with user-defined initial capacity via `Scanner` and interactive CLI.
+* **[`DynamicStack`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/stack/DynamicStack.java)**: Resizable array stack that automatically doubles capacity when threshold is reached.
 
----
+### 4. `datastructures.queue`
+* **[`Queue`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/queue/Queue.java)**: Array-based Circular FIFO Queue utilizing modulo arithmetic `(index + 1) % capacity` to prevent false overflow and guarantee $\mathcal{O}(1)$ operations.
 
-### 3. `SearchAlgorithms.java` & `SortingAlgorithms.java`
-* **Searching Algorithms**:
-  * Linear Search with live index-by-index comparison dry run.
-  * Binary Search (Iterative & Recursive) with search-space halving and pointer tracking (`low`, `mid`, `high`).
-* **Sorting Algorithms**:
-  * Bubble Sort with optimized `swapped` early-exit flag.
-  * Selection Sort with live minimum scan.
-  * Insertion Sort with card-deck shifting.
-  * Quick Sort with **Lomuto Partitioning Scheme** recursion trace.
+### 5. `datastructures.tree`
+* **[`BinarySearchTree`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/tree/BinarySearchTree.java)**:
+  * Insertion ($\mathcal{O}(\log n)$ average) and Deletion handling leaf, single-child, and two-child scenarios (via In-Order Successor).
+  * Traversals: In-Order (sorted), Pre-Order, Post-Order, and Level-Order (BFS).
+  * Metrics: Height, Node Depth, Min, Max, and Leaf Count.
+  * Hierarchical 2D ASCII Tree Diagram.
 
----
+### 6. `datastructures.graph`
+* **[`Graph`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/graph/Graph.java)**:
+  * Adjacency list representation supporting Directed and Undirected graphs.
+  * Breadth-First Search (BFS) and Depth-First Search (DFS).
+  * Path existence checking (`hasPath`) and cycle detection.
 
-### 4. Core Java & OOP Suites
-* **`OopsMastery.java`**: Encapsulation, inheritance, polymorphism (static vs dynamic), abstraction, interfaces, `static`, `final`, `finally`.
-* **`CollectionsMastery.java`**: Complete Collections Framework (`List`, `Set`, `Queue`, `Deque`, `Map`, LRU cache, iterators).
-* **`StreamMastery.java`**: Stream sources, intermediate operations, advanced collectors, reductions, lazy evaluation, and parallel streams.
-* **`LambdaMastery.java`**: Built-in functional interfaces, chaining, method references, and closures.
-* **`AdvancedCoreJava.java`**: Integer cache, `Optional`, strict pass-by-value proof, `equals`/`hashCode` contract, and multithreading (`Callable`, `Future`, `ExecutorService`).
+### 7. `datastructures.array`
+* **[`ArrayOperations`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/datastructures/array/ArrayOperations.java)**:
+  * `int[]`: Insert, delete, reverse in-place, min, max, sum, average.
+  * `char[]`: Vowel/consonant count, palindrome check, frequency map.
+  * `double[]`: Mean, variance, standard deviation, threshold filtering.
+  * `String[]`: Search, prefix matching, alphabetical sorting, string joining.
+
+### 8. `strings`
+* **[`StringOperations`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/strings/StringOperations.java)**:
+  * Core methods (`substring`, `indexOf`, `split`, `replace`).
+  * String Constant Pool (SCP) memory mechanics & immutability proof (`==` vs `.equals()`, `intern()`).
+  * `String` vs `StringBuilder` vs `StringBuffer` benchmarks.
+  * Classic interview algorithms: Palindrome, Anagram, Reversal, Word/Character counts.
+
+### 9. `algorithms`
+* **[`SearchAlgorithms`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/algorithms/searching/SearchAlgorithms.java)**: Linear & Binary Search (Iterative & Recursive) with step-by-step dry runs.
+* **[`SortingAlgorithms`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/algorithms/sorting/SortingAlgorithms.java)**: Bubble, Selection, Insertion, and Quick Sort with visual step-by-step passes and swaps.
+
+### 10. `corejava`
+* **[`corejava.oop`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/corejava/oop/OopsMastery.java)**: Complete OOP pillars, constructors, `static`, `final`, `finally`, interfaces.
+* **[`corejava.collections`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/corejava/collections/CollectionsMastery.java)**: Collections framework (`List`, `Set`, `Queue`, `Map`, LRU cache, iterators).
+* **[`corejava.streams`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/corejava/streams/StreamMastery.java)**: Stream API pipelines, advanced collectors, parallelism, lazy evaluation.
+* **[`corejava.lambdas`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/corejava/lambdas/LambdaMastery.java)**: Built-in functional interfaces, chaining, method references, closures.
+* **[`corejava.advanced`](file:///Users/apple/Desktop/My-practice/Java_learning/core-java-practice/corejava/advanced/AdvancedCoreJava.java)**: Wrappers, `Optional`, strict pass-by-value proof, `equals`/`hashCode`, concurrency (`ExecutorService`, locks, atomics).
 
 ---
 
@@ -99,50 +130,46 @@ my-java-practice/
 ---
 
 ### Compilation Command
-Compile the entire repository with a single command:
+Compile all packages and files across the repository in a single command from project root:
 ```bash
-javac *.java
+javac $(find datastructures algorithms corejava strings -name "*.java")
 ```
 
 ---
 
-### Execution Commands
+### Execution Commands (From Project Root)
 
 ```bash
-# Run Binary Search Tree (BST)
-java BinarySearchTree
-# or simply:
-java Tree
+# Data Structures: Linked Lists
+java datastructures.linkedlist.SinglyLinkedList
+java datastructures.linkedlist.DoublyLinkedList
+java datastructures.linkedlist.CircularLinkedList
 
-# Run Queue Data Structure (FIFO)
-java Queue
+# Data Structures: Stack & Queue
+java datastructures.stack.Stack
+java datastructures.stack.DynamicStack
+java datastructures.queue.Queue
 
-# Run Stack Data Structure (LIFO)
-java Stack
+# Data Structures: Tree & Graph
+java datastructures.tree.BinarySearchTree
+java datastructures.graph.Graph
 
-# Run Singly Linked List Interactive CLI
-java LinkedList
+# Data Structures: Array Operations
+java datastructures.array.ArrayOperations
 
-# Run Searching Algorithms with Visual Dry Runs
-java SearchAlgorithms
+# Strings Lab
+java strings.StringOperations
 
-# Run Sorting Algorithms with Visual Dry Runs
-java SortingAlgorithms
+# Algorithms: Searching & Sorting
+java algorithms.searching.SearchAlgorithms
+java algorithms.sorting.SortingAlgorithms
 
-# Run Complete OOP Suite
-java OopsMastery
-
-# Run Collections Deep Dive
-java CollectionsMastery
-
-# Run Stream API Guide
-java StreamMastery
-
-# Run Lambda Expressions & Functional Programming
-java LambdaMastery
-
-# Run Advanced Core Java (Wrappers, Optional, References, Concurrency)
-java AdvancedCoreJava
+# Core Java Mastery
+java corejava.oop.OopsMastery
+java corejava.collections.CollectionsMastery
+java corejava.streams.StreamMastery
+java corejava.lambdas.LambdaMastery
+java corejava.advanced.AdvancedCoreJava
 ```
 
 ---

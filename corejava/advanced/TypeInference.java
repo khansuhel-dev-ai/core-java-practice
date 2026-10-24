@@ -1,3 +1,5 @@
+package corejava.advanced;
+
 /**
  * ============================================================================
  * File: TypeInference.java

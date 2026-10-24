@@ -1,3 +1,5 @@
+package corejava.collections;
+
 /**
  * ============================================================================
  * File: CollectionsMastery.java

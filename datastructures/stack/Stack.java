@@ -1,15 +1,15 @@
+package datastructures.stack;
+
 import java.util.Scanner;
 
 class StackDemo {
     private int nums[];
     private int top;
 
-    // Default constructor (defaults to capacity of 10)
     public StackDemo() {
         this(10);
     }
 
-    // Parameterized constructor to set array size dynamically based on user input
     public StackDemo(int size) {
         if (size <= 0) {
             System.out.println("Warning: Size must be positive. Defaulting capacity to 5.");
@@ -84,7 +84,6 @@ public class Stack {
         System.out.println("         CUSTOM STACK PRACTICE           ");
         System.out.println("=========================================");
 
-        // Take stack size as input from the user
         System.out.print("Enter the size of the stack: ");
         while (!scanner.hasNextInt()) {
             System.out.print("Invalid input. Please enter a valid integer for stack size: ");
@@ -92,7 +91,6 @@ public class Stack {
         }
         int userSize = scanner.nextInt();
 
-        // Create the stack with user-defined capacity
         StackDemo stack = new StackDemo(userSize);
         System.out.println("Stack created with capacity: " + stack.getCapacity());
 

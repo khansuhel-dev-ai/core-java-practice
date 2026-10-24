@@ -1,3 +1,5 @@
+package corejava.lambdas;
+
 /**
  * ============================================================================
  * File: LambdaMastery.java
